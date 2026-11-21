@@ -30,20 +30,7 @@ jobs:
           Invoke-WebRequest -Uri "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth" -OutFile "weights/RealESRGAN_x2plus.pth"
 
       - name: Build app with PyInstaller
-               run: |
-          pyinstaller --noconfirm --clean --onedir --windowed ^
-            --name EvoLiteAI ^
-            --icon=icon.ico ^
-            --add-data "weights;weights" ^
-            --collect-all mediapipe ^
-            --collect-all gfpgan ^
-            --collect-all realesrgan ^
-            --collect-all basicsr ^
-            --collect-all rawpy ^
-            --hidden-import=tifffile ^
-            --hidden-import=cv2 ^
-            EvoLiteAI.py
-            EvoLiteAI.py
+        run: pyinstaller --noconfirm --clean --onedir --windowed --name EvoLiteAI --icon=icon.ico --add-data "weights;weights" --collect-all mediapipe --collect-all gfpgan --collect-all realesrgan --collect-all basicsr --collect-all rawpy --hidden-import=tifffile --hidden-import=cv2 EvoLiteAI.py
 
       - name: Install Inno Setup
         run: choco install innosetup -y --no-progress
